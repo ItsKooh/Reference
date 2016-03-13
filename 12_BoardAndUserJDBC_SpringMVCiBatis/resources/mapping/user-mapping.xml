@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap     
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"     
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap> 
+
+	<typeAlias alias="user" type="kerson.sample.biz.user.UserVO"/>
+	
+	<resultMap id="userResult" class="kerson.sample.biz.user.UserVO" >
+		<result property="id" column="id"/>
+		<result property="password" column="password"/>
+		<result property="name" column="name"/>
+		<result property="role" column="role"/>
+	</resultMap> 
+	
+	
+	<select id="getUser" resultClass="user">
+		SELECT * 
+		  FROM ADMIN.USERS   
+		 WHERE ID = #id# 
+		   AND PASSWORD = #password#
+	</select> 
+	
+	<!-- 
+	<select id="getUser" resultMap="userResult">
+		SELECT * 
+		  FROM USERS 
+		 WHERE ID = #id# 
+		   AND PASSWORD = #password# 
+	</select>
+	-->
+
+	
+</sqlMap>

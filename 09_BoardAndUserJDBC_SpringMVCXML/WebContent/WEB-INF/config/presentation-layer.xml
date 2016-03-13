@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- HandlerMapping 객체(빈) 설정 -->
+	<bean id="handlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/login.do">login</prop>
+				<prop key="/getBoardList.do">getBoardList</prop>
+				<prop key="/getBoard.do">getBoard</prop>
+				<prop key="/insertBoard.do">insertBoard</prop>
+				<prop key="/updateBoard.do">updateBoard</prop>
+				<prop key="/deleteBoard.do">deleteBoard</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- Controller 객체(빈) 설정 -->
+	<bean id ="login"        class="kerson.sample.view.user.LoginController">
+		<property name="userService" ref="userService"></property>
+	</bean>    
+	<bean id ="getBoardList" class="kerson.sample.view.board.GetBoardListController">
+		<property name="boardService" ref="boardService"></property>
+	</bean>
+	<bean id ="getBoard"     class="kerson.sample.view.board.GetBoardController">
+		<property name="boardService" ref="boardService"></property>	
+	</bean>
+	<bean id ="insertBoard"  class="kerson.sample.view.board.InsertBoardController">
+		<property name="boardService" ref="boardService"></property>
+	</bean>
+	<bean id ="updateBoard"  class="kerson.sample.view.board.UpdateBoardController">
+		<property name="boardService" ref="boardService"></property>
+	</bean>
+	<bean id ="deleteBoard"  class="kerson.sample.view.board.DeleteBoardController">
+		<property name="boardService" ref="boardService"></property>
+	</bean>
+
+	
+	<!-- ViewResolver 설정 -->
+
+</beans>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="12_BoardAndUserJDBC_SpringMVCiBatis" basedir=".">
+
+	<!-- Load properties -->
+	<property file="server.properties" />
+
+	<!-- Set classpath -->
+	<path id="base-classpath">
+		<pathelement path="src" />
+		<pathelement path="bin" />
+		<fileset dir="WebContent/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${ant.home}/lib" />
+	</path>
+
+
+	<!-- 배포 자동화 -->
+	<target name="CreatingWAR">
+		<war destfile="${ant.project.name}.war" webxml="WebContent/WEB-INF/web.xml">
+			<lib dir="WebContent/WEB-INF/lib" />
+			<classes dir="build/classes" />
+			<fileset dir="WebContent" />
+		</war> 
+	</target>
+
+	<target name="DeployToTomcat" depends="CreatingWAR">
+		<echo message="deploying from metadata" />
+		<echo message="ANT_HOME=${ant.home}"/> 
+		<echo message="BASEDIR=${basedir}"/>
+		<echo message="ANT_CORE_LIB=${ant.core.lib}"/>
+		<echo message="JAVA_VERSION=${ant.java.version}"/>
+		<echo message="ANT_LIBRARY_DIR=${ant.library.dir}"/>
+		<echo message="classpath=${java.class.path}"/>
+
+		<copy todir="C:\00.Environment\apache-tomcat-7.0.55\webapps">
+			<fileset dir="${basedir}">
+				<include name="${ant.project.name}.war"/>
+			</fileset>
+		</copy>
+		<delete file="${ant.project.name}.war"/>  
+	</target>
+
+</project>

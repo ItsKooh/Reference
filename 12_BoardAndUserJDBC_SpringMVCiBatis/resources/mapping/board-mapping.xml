@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap     
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"     
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap> 
+
+	<typeAlias alias="board" type="kerson.sample.biz.board.BoardVO"/>
+	
+	<select id="getBoard" parameterClass="board" resultClass="board">
+		SELECT * 
+		 FROM BOARD 
+		WHERE SEQ = #seq#
+	</select>
+	
+	
+	
+	<select id="getBoardList" parameterClass="board" resultClass="board">
+		SELECT * 
+		  FROM BOARD
+		 ORDER BY SEQ ASC
+	</select>
+	
+	 
+	
+	
+	<insert id="insertBoard" parameterClass="board" >
+		INSERT 
+		  INTO BOARD ( SEQ, TITLE, CONTENT, WRITER, CNT ) 
+		VALUES ( (SELECT NVL(MAX(SEQ),0) + 1 FROM BOARD), #title#, #content#, #writer#, 0 )
+	</insert>
+	
+	
+	
+	
+	<update id="updateBoard" parameterClass="board" >
+		UPDATE BOARD 
+		   SET TITLE = #title#
+		     , CONTENT = #content#
+		     , WRITER = #writer#
+		 WHERE SEQ = #seq#
+	</update>
+	
+	
+	
+	
+	<delete id="deleteBoard" parameterClass="board" >
+		DELETE 
+		  FROM BOARD 
+		 WHERE SEQ = #seq#
+	</delete> 
+	
+	
+</sqlMap>

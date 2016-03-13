@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userDAO"      class="kerson.sample.biz.user.UserDAO" ></bean>
+    <bean id="userService"  class="kerson.sample.biz.user.UserServiceImpl" 
+                            init-method="start" 
+                            destroy-method="end"
+                            lazy-init="false"
+                            scope="singleton"></bean>
+    
+    <bean id="boardDAO"     class="kerson.sample.biz.board.BoardDAO" ></bean>
+    <bean id="boardService" class="kerson.sample.biz.board.BoardServiceImpl" ></bean>
+    
+</beans>
